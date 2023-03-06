@@ -30,7 +30,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with: 
           name: release-apk
-          path: build/app/outputs/apk/release/my-app.apk
+          path: ./build/app/outputs/apk/release/my-app.apk
 
 
   #    - run: flutter pub get
