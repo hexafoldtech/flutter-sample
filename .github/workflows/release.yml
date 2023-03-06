@@ -15,6 +15,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        flutter-version: [3.7.6]
+        
+    
+    
     steps:
       #- uses: actions/checkout@v3
 
@@ -25,12 +31,18 @@ jobs:
       #- uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
       
       - uses: action/checkout@v3
-      - name: Install dependencies
-        with: 
-          flutter-version: '3.7.6'
-          run: flutter pub get
-          run: flutter test
-          run: flutter build apk
+      - name: Use flutter 
+        uses: action/setup-flutter@v2
+        with:
+           flutter-version: ${{ matrix.flutter-version }}
+      -  run: flutter pub get #install the dependencies
+      
+#      - name: Testing        
+      -  run: flutter test
+      
+#      - name: building apk package
+      -  run: flutter build apk
+               
       
       # Uncomment this step to verify the use of 'dart format' on each commit.
       # - name: Verify formatting
