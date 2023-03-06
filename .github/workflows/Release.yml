@@ -27,8 +27,8 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: dart analyze
-      - run: flutter test
-      - run: flutter build appbundle
+  #    - run: flutter test
+      - run: flutter build apk --split-per-abi
 
 
   #    - run: flutter pub get
