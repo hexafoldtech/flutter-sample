@@ -15,25 +15,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        flutter-version: [3.7.6]
+#    strategy:
+#      matrix:
+#        flutter-version: [3.7.6]
         
     steps:
-      #- uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       # Note: This workflow uses the latest stable version of the Dart SDK.
       # You can specify other versions if desired, see documentation here:
       # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      # - uses: dart-lang/setup-dart@v1
-      #- uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: dart-lang/setup-dart@v1
+      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
       
-      - uses: action/checkout@3
-      - name: Use flutter 
-        uses: action/setup-flutter@v2
-        with:
-           flutter-version: ${{ matrix.flutter-version }}
-      -  run: flutter pub get #install the dependencies
+ #     - uses: action/checkout@3
+ #     - name: Use flutter 
+ #       uses: action/setup-flutter@v2
+ #       with:
+ #          flutter-version: ${{ matrix.flutter-version }}
+ #     -  run: flutter pub get #install the dependencies
       
 #      - name: Testing        
 #      -  run: flutter test
@@ -43,8 +43,8 @@ jobs:
                
       
       # Uncomment this step to verify the use of 'dart format' on each commit.
-      # - name: Verify formatting
-      #   run: dart format --output=none --set-exit-if-changed .
+       - name: Verify formatting
+         run: dart format --output=none --set-exit-if-changed .
 
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       #- name: Analyze project source
