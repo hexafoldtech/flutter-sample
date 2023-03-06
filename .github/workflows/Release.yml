@@ -17,6 +17,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1 #external for testing 
+      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603 #external for testing with out dart having an error of analyze
+
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
