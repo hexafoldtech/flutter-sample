@@ -27,9 +27,9 @@ jobs:
       - run: dart analyze                    #Analyzing the code syntax   
   #    - run: flutter test       # have some code writing error which can be resolved by the developer
       - run: flutter build apk 
-      - uses: actions/download-artifact@v1  # can be upload as well on the specific path
-        with: 
-          name: release-apk
+  #    - uses: actions/download-artifact@v1  # can be upload as well on the specific path
+  #       with: 
+  #        name: release-apk
   #        path: ./build/app/outputs/apk/release/my-app.apk
 
 
