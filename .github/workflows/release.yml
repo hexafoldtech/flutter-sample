@@ -28,9 +28,9 @@ jobs:
       # - uses: dart-lang/setup-dart@v1
       #- uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
       
-      - uses: action/checkout@v2
+      - uses: action/checkout@3
       - name: Use flutter 
-        uses: action/setup-flutter@v1
+        uses: action/setup-flutter@v2
         with:
            flutter-version: ${{ matrix.flutter-version }}
       -  run: flutter pub get #install the dependencies
