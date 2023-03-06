@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: release
+name: CI 
 
 on:
   push:
@@ -16,19 +16,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@v1 #external for testing 
-      - uses: dart-lang/setup-dart@v1 #external for testing with out dart having an error of analyze
+      - uses: actions/checkout@v2     #checking the repository 
+      - uses: dart-lang/setup-dart@v1 # widgets dependecies
+  #    - uses: dart-lang/setup-dart@v1 #external for testing with out dart having an error of analyze
       
-
-
-      - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v1    # For flutter dependecies
         with:
           channel: "stable"
-      - run: flutter pub get
-      - run: dart analyze
-  #    - run: flutter test
-      - run: flutter build apk --split-per-abi
+      - run: flutter pub get                 #Installing the flutter dependecies  
+      - run: dart analyze                    #Analyzing the code syntax   
+  #    - run: flutter test       # have some code writing error which can be resolved by the developer
+      - run: flutter build apk 
+      - uses: actions/upload-artifact@v1
+        with: 
+          name: release-apk
+          path: build/app/outputs/apk/release/my-app.apk
 
 
   #    - run: flutter pub get
@@ -36,17 +38,6 @@ jobs:
   #    - run: dart analyze
   #    - run: dart test
 
-
-
-
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      # - uses: dart-lang/setup-dart@v1
-      #- uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
-
-      #- name: Install dependencies
-      #  run: flutter pub get #previously dart pub get
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
       # - name: Verify formatting
