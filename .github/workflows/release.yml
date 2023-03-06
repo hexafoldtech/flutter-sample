@@ -36,10 +36,10 @@ jobs:
       -  run: flutter pub get #install the dependencies
       
 #      - name: Testing        
-      -  run: flutter test
+#      -  run: flutter test
       
 #      - name: building apk package
-      -  run: flutter build apk
+#      -  run: flutter build apk
                
       
       # Uncomment this step to verify the use of 'dart format' on each commit.
@@ -53,5 +53,5 @@ jobs:
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
       # want to change this to 'flutter test'.
-      #- name: Run tests
-      #  run: dart test
+      - name: Run tests
+        run: dart test
