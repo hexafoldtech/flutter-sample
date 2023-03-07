@@ -34,7 +34,12 @@ jobs:
       - run: dart analyze                    #Analyzing the code syntax   
   #    - run: flutter test                   # have some code writing error which can be resolved by the developer
       - run: flutter build ${{ matrix.target }}
-     
+      
+      - name: upload APK
+        uses: action@upload-artifact@v2
+        with: 
+          name: sample.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
   
   
   
