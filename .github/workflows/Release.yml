@@ -30,8 +30,8 @@ jobs:
   #      with: 
   #        name: release-apk
   #        path: ./build/app/outputs/apk/release/my-app.apk
-      uses: actions/upload-artifact@v1
-      with:
+      - uses: actions/upload-artifact@v1
+      - with:
           name: app
           path: app/build/outputs/apk/debug/app-debug.apk
 
@@ -39,6 +39,7 @@ jobs:
   #    - run: dart format --output=none --set-exit-if-changed .
   #    - run: dart analyze
   #    - run: dart test
+
 
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
