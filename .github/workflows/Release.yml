@@ -1,9 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: CI 
+name: Slack notifcation 
 
 on:
   push:
@@ -12,42 +7,20 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
-    name: Build ${{ matrix.target }}
+  slack-notification:
+    name: slack Notification
     runs-on: ubuntu-latest
 
-    strategy:
-     fail-fast: false
-     matrix:
-        target: ["apk --debug"]             #["apk --debug", "appbundle --debug", "ios --no-codesign", macos, web]    
-
     steps:
-      - uses: actions/checkout@v2           #checking the repository 
-      - uses: dart-lang/setup-dart@v1       # widgets dependecies
+      - uses: actions/checkout@v2 
+      - uses: Slack Notification
       
-      - uses: subosito/flutter-action@v1    # For flutter dependecies
-        with:
-          channel: "stable"
-      - run: flutter pub get                 #Installing the flutter dependecies  
-      - run: dart analyze                    #Analyzing the code syntax   
-  #    - run: flutter test                   # have some code writing error which can be resolved by the developer
-  #    - run: flutter build apk #${{ matrix.target }}
-
-      - name: set up JDK 12                 #setup java for gradle dependencies and gradle will build the packages
-        uses: actions/setup-java@v1
-        with:
-          java-version: '12.x' 
-
-      - run: flutter build apk              #--debug --split-per-abi  # building the package
-
-      - name: push to release                  
-        uses: ncipollo/release-action@v1    # depedencies for pushing the apk to release  
-        with: 
-          artifacts: "build/app/outputs/apk/release/*.apk*"     
-          tag: v1.0.${{ github.run_number}}
-          token: ${{ secrets.TOKEN }}
-
-  
+      - uses: rtCamp/action-slack-notify@2    # For flutter dependecies
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: watchtower-alert
+          SLACK_MESSAGE: 'Post Content :rocket:'
+          SLACK_USERNAME: rtCamp
   
   
   
