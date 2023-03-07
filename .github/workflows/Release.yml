@@ -13,10 +13,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2 
-      - uses: Slack Notification
-      
-      - uses: rtCamp/action-slack-notify@2    # For flutter dependecies
-        env:
+       
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@2    
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: watchtower-alert
           SLACK_MESSAGE: 'Post Content :rocket:'
