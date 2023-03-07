@@ -40,15 +40,25 @@ jobs:
         with:
           java-version: 1.8 
 
-      - name: Build debug APK
-        run: .gradlew assembleDebug --stacktrace
+      - run: flutter build apk --debug --split-per-abi
 
-      - name: upload APK
-      - run: flutter build apk #${{ matrix.target }}
-        uses: actions/upload-artifact@v2
+      - name: push to release
+        uses: ncipollo/release-action@v1
         with: 
-          name: sample.apk
-          path: build/app/outputs/flutter-apk/app-release.apk #app/build/outputs/apk/debug/app-debug.apk #build/app/outputs/flutter-apk/app-release.apk 
+          artifacts: "Build/app/outputs/apk/debug/*"     
+          tag: v1.0.${{ github.run_number}}
+          token: ${{ secrets.TOKEN}}
+
+          
+  #    - name: Build debug APK
+  #      run: .gradlew assembleDebug --stacktrace
+
+  #    - name: upload APK
+  #    - run: flutter build apk #${{ matrix.target }}
+  #      uses: actions/upload-artifact@v2
+  #      with: 
+  #        name: sample.apk
+  #        path: build/app/outputs/flutter-apk/app-release.apk #app/build/outputs/apk/debug/app-debug.apk #build/app/outputs/flutter-apk/app-release.apk 
   
   
   
