@@ -35,9 +35,10 @@ jobs:
   #    - run: flutter test                   # have some code writing error which can be resolved by the developer
   #    - run: flutter build apk #${{ matrix.target }}
       
+
       - name: upload APK
       - run: flutter build apk #${{ matrix.target }}
-        uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v2
         with: 
           name: sample.apk
           path: build/app/outputs/flutter-apk/app-release.apk #app/build/outputs/apk/debug/app-debug.apk #build/app/outputs/flutter-apk/app-release.apk 
