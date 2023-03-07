@@ -18,19 +18,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2     #checking the repository 
       - uses: dart-lang/setup-dart@v1 # widgets dependecies
-  #    - uses: dart-lang/setup-dart@v1 #external for testing with out dart having an error of analyze
       
       - uses: subosito/flutter-action@v1    # For flutter dependecies
         with:
           channel: "stable"
       - run: flutter pub get                 #Installing the flutter dependecies  
       - run: dart analyze                    #Analyzing the code syntax   
-  #    - run: flutter test       # have some code writing error which can be resolved by the developer
+  #    - run: flutter test                   # have some code writing error which can be resolved by the developer
       - run: flutter build apk 
-  #    - uses: actions/download-artifact@v1  # can be upload as well on the specific path
-  #       with: 
-  #        name: release-apk
-  #        path: ./build/app/outputs/apk/release/my-app.apk
+      - uses: actions/upload-artifact@v1  # can be upload as well on the specific path
+         with: 
+          name: release-apk
+          path: ./build/app/outputs/apk/release/my-app.apk
 
 
   #    - run: flutter pub get
