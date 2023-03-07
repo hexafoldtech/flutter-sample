@@ -54,13 +54,13 @@ jobs:
           # For posting a rich message using Block Kit
           payload: |
             {
-             "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.release.url }}",
+             "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.releases/latest}}",
              "blocks": [
                {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.release.url }}"
+                    "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.releases/latest }}"
                   }
                 }
               ]
