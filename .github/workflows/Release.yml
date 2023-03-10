@@ -47,6 +47,18 @@ jobs:
           tag: v1.0.${{ github.run_number}}
           token: ${{ secrets.TOKEN }}
 
+      - name: upload artifact to firebase 
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with: 
+          appId: ${{ secrets.FIREBASE_APPID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          file: build/app/outputs/apk/release/*.apk   
+
+
+
+
+
+
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
