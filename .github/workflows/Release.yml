@@ -13,13 +13,13 @@ on:
 
 jobs:
   build:
-    name: Build ${{ matrix.target }}
+    #name: Build ${{ matrix.target }}
     runs-on: ubuntu-latest
 
-    strategy:
-     fail-fast: false
-     matrix:
-        target: ["apk --debug"]             #["apk --debug", "appbundle --debug", "ios --no-codesign", macos, web]    
+    #strategy:
+    # fail-fast: false
+    # matrix:
+    #    target: ["apk --debug"]             #["apk --debug", "appbundle --debug", "ios --no-codesign", macos, web]    
 
     steps:
       - uses: actions/checkout@v2           #checking the repository 
@@ -46,7 +46,8 @@ jobs:
           artifacts: "build/app/outputs/apk/release/*.apk*"     
           tag: v1.0.${{ github.run_number}}
           token: ${{ secrets.TOKEN }}
-
+          
+  #     Upload the code on FIREBASE
       - name: upload artifact to firebase 
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with: 
